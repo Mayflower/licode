@@ -90,7 +90,7 @@ var log = logger.getLogger("ErizoController");
 
 server.listen(8080);
 
-io.set('log level', 0);
+io.set('origins', '*:*');
 
 var nuveKey = GLOBAL.config.nuve.superserviceKey;
 
