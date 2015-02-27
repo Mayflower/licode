@@ -4,7 +4,7 @@ var rpcPublic = require('./rpc/rpcPublic');
 var ST = require('./Stream');
 var http = require('http');
 var server = http.createServer();
-var io = require('socket.io').listen(server, {log:false});
+var io = require('socket.io').listen(server, {log:false, origins:'*:*'});
 var config = require('./../../licode_config');
 var Permission = require('./permission');
 var Getopt = require('node-getopt');
@@ -89,8 +89,6 @@ var controller = require('./roomController');
 var log = logger.getLogger("ErizoController");
 
 server.listen(8080);
-
-io.set('origins', '*:*');
 
 var nuveKey = GLOBAL.config.nuve.superserviceKey;
 
