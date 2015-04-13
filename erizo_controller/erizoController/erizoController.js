@@ -4,7 +4,7 @@ var rpcPublic = require('./rpc/rpcPublic');
 var ST = require('./Stream');
 var http = require('http');
 var server = http.createServer();
-var io = require('socket.io').listen(server, {log:false, origins:'192.168.59.103:*'});
+var io = require('socket.io').listen(server, {log:false});
 var config = require('./../../licode_config');
 var Permission = require('./permission');
 var Getopt = require('node-getopt');
@@ -435,7 +435,7 @@ var listen = function () {
                     if ((options[right] === true) && (permissions[right] === false))
                         return callback('error', 'unauthorized');
                 }
-            } 
+            }
             id = Math.random() * 1000000000000000000;
 
             if (options.state === 'url' || options.state === 'recording') {
@@ -461,7 +461,7 @@ var listen = function () {
                 });
             } else if (options.state === 'erizo') {
                 log.info("New publisher");
-                
+
                 socket.room.controller.addPublisher(id, function (signMess) {
 
                     if (signMess.type === 'initializing') {
@@ -480,7 +480,7 @@ var listen = function () {
                         if (socket.room.streams[id] === undefined) {
                             return;
                         }
-                       
+
                         log.info("IceConnection Failed on publisher, removing " , id);
                         var i, index;
                         var streamId = id;
